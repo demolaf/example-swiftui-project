@@ -1,0 +1,11 @@
+xcassets:
+  inputs: check_it_swiftui/Resources/Assets
+  outputs:
+    templateName: swift5
+    output: check_it_swiftui/Resources/Assets.swift
+
+fonts:
+  inputs: check_it_swiftui/Resources/Assets/Fonts
+  outputs:
+    templateName: swift5
+    output: check_it_swiftui/Resources/Fonts.swift
