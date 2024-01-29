@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
-
-    func onAppear() {
-        UIPageControl.appearance().currentPageIndicatorTintColor = Asset.Colors.ColorScheme.tertiary.color.light()
-        UIPageControl.appearance().pageIndicatorTintColor = Asset.Colors.CustomColors.dotIndicator.color
-    }
+    @State private var goToUserList = false
 
     var body: some View {
         VStack(spacing: 56) {
@@ -24,13 +20,22 @@ struct OnboardingView: View {
             .tabViewStyle(.page(indexDisplayMode: .always))
             getStartedButton
                 .padding(.init(top: 0, leading: 38, bottom: 38, trailing: 38))
+                .navigationDestination(isPresented: $goToUserList) {
+                    UserListView()
+                        .navigationBarBackButtonHidden()
+                }
         }
         .onAppear(perform: onAppear)
     }
 
+    func onAppear() {
+        UIPageControl.appearance().currentPageIndicatorTintColor = Asset.Colors.ColorScheme.tertiary.color.light()
+        UIPageControl.appearance().pageIndicatorTintColor = Asset.Colors.CustomColors.dotIndicator.color
+    }
+
     var getStartedButton: some View {
         Button(action: {
-            debugPrint("get started button pressed")
+            goToUserList = true
         }, label: {
             Text("Get Started")
                 .font(FontFamily.NunitoSans7pt.bold.swiftUIFont(size: 16))
